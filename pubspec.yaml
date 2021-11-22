@@ -1,7 +1,7 @@
 name: carousel_grid
 description: Carousel Grid é um package para exibir thumbnail de imagens em grid com cache e zoom.
 version: 1.0.0
-homepage:
+homepage: https://github.com/gabrielpatricksouza/carousel_grid
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

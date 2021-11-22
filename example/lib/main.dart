@@ -30,8 +30,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-  List<String> listOfUrls= [
+  List<String> listOfUrls = [
     "https://cosmosmagazine.com/wp-content/uploads/2020/02/191010_nature.jpg",
     "https://scx2.b-cdn.net/gfx/news/hires/2019/2-nature.jpg",
     "https://isha.sadhguru.org/blog/wp-content/uploads/2016/05/natures-temples.jpg",
@@ -45,13 +44,16 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body:Center(
+      body: Center(
         child: CarouselGrid(
           height: 285,
           width: 400,
           imageNetwork: true,
           listUrlImages: listOfUrls,
-          iconBack: const Icon(Icons.arrow_back, color: Colors.white,),
+          iconBack: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
         ),
       ),
     );
