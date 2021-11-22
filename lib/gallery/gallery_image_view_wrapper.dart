@@ -27,7 +27,6 @@ class GalleryImageViewWrapper extends StatefulWidget {
     required this.iconBack,
   }) : super(key: key);
 
-
   @override
   State<StatefulWidget> createState() {
     return _GalleryImageViewWrapperState();
@@ -48,6 +47,7 @@ class _GalleryImageViewWrapperState extends State<GalleryImageViewWrapper> {
     _controller = InfiniteScrollController(initialItem: widget.initialIndex);
     pageController = PageController(initialPage: widget.initialIndex);
   }
+
   @override
   void dispose() {
     super.dispose();
@@ -77,32 +77,33 @@ class _GalleryImageViewWrapperState extends State<GalleryImageViewWrapper> {
           SafeArea(
             child: Align(
                 alignment: Alignment.topLeft,
-                child:  Row(
+                child: Row(
                   children: [
                     Container(
-                      margin: const EdgeInsets.only(top: 5.0, left: 5.0),
-                      decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.4),
-                        borderRadius: BorderRadius.circular(8)
-                      ),
-                      child: IconButton(onPressed: (){Navigator.pop(context);}, icon:  widget.iconBack)
-                    ),
+                        margin: const EdgeInsets.only(top: 5.0, left: 5.0),
+                        decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.4),
+                            borderRadius: BorderRadius.circular(8)),
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: widget.iconBack)),
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.only(top: 5.0, left: 20.0),
                         child: Text(
                           widget.titleGallery ?? "",
-                          style: const TextStyle(color: Colors.white, fontSize: 20),
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 20),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ),
                   ],
-                )
-            ),
+                )),
           ),
-
           Align(
             alignment: Alignment.bottomCenter,
             child: SizedBox(
@@ -125,26 +126,33 @@ class _GalleryImageViewWrapperState extends State<GalleryImageViewWrapper> {
                       child: GestureDetector(
                         onTap: () {
                           Navigator.pushReplacement(
-                            context, PageRouteBuilder(
+                            context,
+                            PageRouteBuilder(
                               transitionDuration: Duration.zero,
-                              pageBuilder: (_, __, ___) => GalleryImageViewWrapper(
+                              pageBuilder: (_, __, ___) =>
+                                  GalleryImageViewWrapper(
                                 titleGallery: widget.titleGallery,
                                 galleryItems: widget.galleryItems,
-                                backgroundDecoration: const BoxDecoration(color: Colors.black,),
+                                backgroundDecoration: const BoxDecoration(
+                                  color: Colors.black,
+                                ),
                                 initialIndex: itemIndex,
                                 scrollDirection: Axis.horizontal,
                                 iconBack: widget.iconBack,
                               ),
                             ),
-                           );
-                          },
+                          );
+                        },
                         child: ClipRRect(
-                          borderRadius: const BorderRadius.all(Radius.circular(5)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(5)),
                           child: CachedNetworkImage(
                             fit: BoxFit.fill,
                             imageUrl: widget.galleryItems[itemIndex].imageUrl,
-                            placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                            errorWidget: (context, url, error) => const Icon(Icons.error),
+                            placeholder: (context, url) => const Center(
+                                child: CircularProgressIndicator()),
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
                           ),
                         ),
                       ),
@@ -165,7 +173,8 @@ class _GalleryImageViewWrapperState extends State<GalleryImageViewWrapper> {
     return PhotoViewGalleryPageOptions.customChild(
       child: CachedNetworkImage(
         imageUrl: item.imageUrl,
-        placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+        placeholder: (context, url) =>
+            const Center(child: CircularProgressIndicator()),
         errorWidget: (context, url, error) => const Icon(Icons.error),
       ),
       initialScale: PhotoViewComputedScale.contained,

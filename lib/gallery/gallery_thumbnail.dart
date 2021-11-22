@@ -19,7 +19,8 @@ class GalleryItemThumbnail extends StatelessWidget {
           fit: BoxFit.cover,
           imageUrl: galleryItem.imageUrl,
           height: 100.0,
-          placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+          placeholder: (context, url) =>
+              const Center(child: CircularProgressIndicator()),
           errorWidget: (context, url, error) => const Icon(Icons.error),
         ),
       ),

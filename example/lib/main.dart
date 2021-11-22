@@ -30,12 +30,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<String> listOfUrls = [
-    "https://cosmosmagazine.com/wp-content/uploads/2020/02/191010_nature.jpg",
-    "https://scx2.b-cdn.net/gfx/news/hires/2019/2-nature.jpg",
-    "https://isha.sadhguru.org/blog/wp-content/uploads/2016/05/natures-temples.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/7/77/Big_Nature_%28155420955%29.jpeg",
-    "https://www.expatica.com/app/uploads/sites/9/2017/06/Lake-Oeschinen-1200x675.jpg",
+  List<String> imagesUrls = [
+    "https://scaffoldtecnologia.com.br/wp-content/uploads/2021/10/home4.jpg",
+    "https://scaffoldtecnologia.com.br/wp-content/uploads/2021/10/app-2.png",
+    "https://scaffoldtecnologia.com.br/wp-content/uploads/2021/10/app.jpg",
+    "https://scaffoldtecnologia.com.br/wp-content/uploads/2021/10/home-1.jpg",
+    "https://scaffoldtecnologia.com.br/wp-content/uploads/2021/10/page-1.png",
   ];
 
   @override
@@ -49,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
           height: 285,
           width: 400,
           imageNetwork: true,
-          listUrlImages: listOfUrls,
+          listUrlImages: imagesUrls,
           iconBack: const Icon(
             Icons.arrow_back,
             color: Colors.white,

@@ -1,6 +1,5 @@
 library carousel_grid;
 
-import 'dart:io';
 import 'package:carousel_grid/gallery/gallery_model.dart';
 import 'package:carousel_grid/gallery/gallery_image_view_wrapper.dart';
 import 'package:carousel_grid/gallery/util.dart';
@@ -69,7 +68,8 @@ class _CarouselGridState extends State<CarouselGrid> {
                     shrinkWrap: true,
                     itemBuilder: (BuildContext context, int index) {
                       return ClipRRect(
-                          borderRadius: const BorderRadius.all(Radius.circular(4)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(4)),
                           child: galleryItems.length > 4 && index == 3
                               ? buildImageNumbers(index)
                               : GalleryItemThumbnail(
@@ -77,12 +77,8 @@ class _CarouselGridState extends State<CarouselGrid> {
                                   onTap: () {
                                     openImageFullScreen(index);
                                   },
-                                )
-                      );
-                    }
-                )
-        )
-    );
+                                ));
+                    })));
   }
 
 // build image with number for other images
@@ -121,7 +117,9 @@ class _CarouselGridState extends State<CarouselGrid> {
         builder: (context) => GalleryImageViewWrapper(
           titleGallery: widget.titleGallery,
           galleryItems: galleryItems,
-          backgroundDecoration: const BoxDecoration(color: Colors.black,),
+          backgroundDecoration: const BoxDecoration(
+            color: Colors.black,
+          ),
           initialIndex: indexOfImage,
           scrollDirection: Axis.horizontal,
           iconBack: widget.iconBack,
