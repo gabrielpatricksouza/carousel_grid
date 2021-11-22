@@ -48,7 +48,6 @@ class _MyHomePageState extends State<MyHomePage> {
         child: CarouselGrid(
           height: 285,
           width: 400,
-          imageNetwork: true,
           listUrlImages: imagesUrls,
           iconBack: const Icon(
             Icons.arrow_back,

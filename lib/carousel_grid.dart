@@ -8,7 +8,6 @@ import 'gallery/gallery_thumbnail.dart';
 
 class CarouselGrid extends StatefulWidget {
   final int gridCount;
-  final bool imageNetwork;
   final double gridMainExtent;
   final double gridMainSpacing;
   final double gridCrossSpacing;
@@ -20,7 +19,6 @@ class CarouselGrid extends StatefulWidget {
 
   const CarouselGrid({
     Key? key,
-    required this.imageNetwork,
     required this.width,
     this.height = 285,
     this.listUrlImages,
