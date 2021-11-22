@@ -46,13 +46,12 @@ List<String> imagesUrls = [
 ```
 
 
-#### Carousel Grid;
+#### Carousel Grid
 
 ```dart
 CarouselGrid(
     height: 285,
     width: 400,
-    imageNetwork: true,
     listUrlImages: imagesUrls,
     iconBack: const Icon(
       Icons.arrow_back,
