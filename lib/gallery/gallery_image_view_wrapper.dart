@@ -15,6 +15,9 @@ class GalleryImageViewWrapper extends StatefulWidget {
   final Axis scrollDirection;
   final String? titleGallery;
   final Icon iconBack;
+  final BoxFit fit;
+  final bool loop;
+  final bool activeCarouselList;
 
   const GalleryImageViewWrapper({
     Key? key,
@@ -25,6 +28,9 @@ class GalleryImageViewWrapper extends StatefulWidget {
     required this.galleryItems,
     this.scrollDirection = Axis.horizontal,
     required this.iconBack,
+    required this.fit,
+    required this.loop,
+    required this.activeCarouselList,
   }) : super(key: key);
 
   @override
@@ -113,7 +119,7 @@ class _GalleryImageViewWrapperState extends State<GalleryImageViewWrapper> {
                 child: InfiniteCarousel.builder(
                   itemCount: widget.galleryItems.length,
                   itemExtent: 150,
-                  loop: true,
+                  loop: widget.loop,
                   controller: _controller,
                   onIndexChanged: (index) {
                     if (_selectedIndex != index) {
@@ -124,38 +130,43 @@ class _GalleryImageViewWrapperState extends State<GalleryImageViewWrapper> {
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 4.0),
                       child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            PageRouteBuilder(
-                              transitionDuration: Duration.zero,
-                              pageBuilder: (_, __, ___) =>
-                                  GalleryImageViewWrapper(
-                                titleGallery: widget.titleGallery,
-                                galleryItems: widget.galleryItems,
-                                backgroundDecoration: const BoxDecoration(
-                                  color: Colors.black,
+                          onTap: () {
+                            Navigator.pushReplacement(
+                              context,
+                              PageRouteBuilder(
+                                transitionDuration: Duration.zero,
+                                pageBuilder: (_, __, ___) =>
+                                    GalleryImageViewWrapper(
+                                  titleGallery: widget.titleGallery,
+                                  galleryItems: widget.galleryItems,
+                                  backgroundDecoration: const BoxDecoration(
+                                    color: Colors.black,
+                                  ),
+                                  initialIndex: itemIndex,
+                                  scrollDirection: Axis.horizontal,
+                                  iconBack: widget.iconBack,
+                                  fit: widget.fit,
+                                  loop: widget.loop,
+                                  activeCarouselList: widget.activeCarouselList,
                                 ),
-                                initialIndex: itemIndex,
-                                scrollDirection: Axis.horizontal,
-                                iconBack: widget.iconBack,
                               ),
-                            ),
-                          );
-                        },
-                        child: ClipRRect(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(5)),
-                          child: CachedNetworkImage(
-                            fit: BoxFit.fill,
-                            imageUrl: widget.galleryItems[itemIndex].imageUrl,
-                            placeholder: (context, url) => const Center(
-                                child: CircularProgressIndicator()),
-                            errorWidget: (context, url, error) =>
-                                const Icon(Icons.error),
-                          ),
-                        ),
-                      ),
+                            );
+                          },
+                          child: widget.activeCarouselList
+                              ? ClipRRect(
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(5)),
+                                  child: CachedNetworkImage(
+                                    fit: widget.fit,
+                                    imageUrl:
+                                        widget.galleryItems[itemIndex].imageUrl,
+                                    placeholder: (context, url) => const Center(
+                                        child: CircularProgressIndicator()),
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(Icons.error),
+                                  ),
+                                )
+                              : const SizedBox()),
                     );
                   },
                 ),

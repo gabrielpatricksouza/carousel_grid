@@ -16,6 +16,9 @@ class CarouselGrid extends StatefulWidget {
   final List<String>? listUrlImages;
   final String? titleGallery;
   final Icon iconBack;
+  final BoxFit fitCarouselList;
+  final bool loopCarouselList;
+  final bool activeCarouselList;
 
   const CarouselGrid({
     Key? key,
@@ -27,6 +30,9 @@ class CarouselGrid extends StatefulWidget {
     this.gridCrossSpacing = 5.0,
     this.gridMainExtent = 130.0,
     this.titleGallery,
+    this.fitCarouselList = BoxFit.cover,
+    this.loopCarouselList = true,
+    this.activeCarouselList = true,
     required this.iconBack,
   }) : super(key: key);
 
@@ -121,6 +127,9 @@ class _CarouselGridState extends State<CarouselGrid> {
           initialIndex: indexOfImage,
           scrollDirection: Axis.horizontal,
           iconBack: widget.iconBack,
+          fit: widget.fitCarouselList,
+          loop: widget.loopCarouselList,
+          activeCarouselList: widget.activeCarouselList,
         ),
       ),
     );
