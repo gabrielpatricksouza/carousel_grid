@@ -5,6 +5,7 @@ import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
 import './gallery_model.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 // to view image in full screen
 class GalleryImageViewWrapper extends StatefulWidget {
@@ -156,15 +157,20 @@ class _GalleryImageViewWrapperState extends State<GalleryImageViewWrapper> {
                               ? ClipRRect(
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(5)),
-                                  child: CachedNetworkImage(
-                                    fit: widget.fit,
-                                    imageUrl:
-                                        widget.galleryItems[itemIndex].imageUrl,
-                                    placeholder: (context, url) => const Center(
-                                        child: CircularProgressIndicator()),
-                                    errorWidget: (context, url, error) =>
-                                        const Icon(Icons.error),
-                                  ),
+                                  child: kIsWeb
+                                      ? Image.network(widget
+                                          .galleryItems[itemIndex].imageUrl)
+                                      : CachedNetworkImage(
+                                          fit: widget.fit,
+                                          imageUrl: widget
+                                              .galleryItems[itemIndex].imageUrl,
+                                          placeholder: (context, url) =>
+                                              const Center(
+                                                  child:
+                                                      CircularProgressIndicator()),
+                                          errorWidget: (context, url, error) =>
+                                              const Icon(Icons.error),
+                                        ),
                                 )
                               : const SizedBox()),
                     );

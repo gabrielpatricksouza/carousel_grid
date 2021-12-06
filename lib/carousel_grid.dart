@@ -7,17 +7,39 @@ import 'package:flutter/material.dart';
 import 'gallery/gallery_thumbnail.dart';
 
 class CarouselGrid extends StatefulWidget {
+  ///Indicates how many horizontal images will contain
   final int gridCount;
+
   final double gridMainExtent;
+
+  /// Indicates the size of the space between images vertically
   final double gridMainSpacing;
+
+  /// Indicates the size of space between images horizontally
   final double gridCrossSpacing;
+
+  /// Indicate Indicates the size(height) that the carousel_grid will occupy
   final double height;
+
+  /// Indicate Indicates the size(width) that the carousel_grid will occupy
   final double width;
+
+  /// Indicates the list of images that will be displayed on the carousel_grid
   final List<String>? listUrlImages;
+
+  /// Indicates the title of the carousel_grid that will appear at the top of the page when opening an image
   final String? titleGallery;
+
+  /// Indicates the configurable icon for back page
   final Icon iconBack;
+
+  /// Edit BoxFit From images of Carousel List
   final BoxFit fitCarouselList;
+
+  /// Enable or disable loop carousel List
   final bool loopCarouselList;
+
+  /// Activate or deactivate the Carousel List
   final bool activeCarouselList;
 
   const CarouselGrid({
