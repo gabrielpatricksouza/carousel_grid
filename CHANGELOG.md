@@ -1,3 +1,7 @@
+## 1.0.2
+
+* Added version web
+
 ## 1.0.1
 
 * Added option to change the fit of ListCarousel. You can define it like this:
