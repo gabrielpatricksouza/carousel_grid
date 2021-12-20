@@ -1,6 +1,6 @@
 name: carousel_grid
 description: Carousel Grid é um package para exibir thumbnail de imagens em grid com cache e zoom.
-version: 1.0.2
+version: 1.0.3
 homepage: https://github.com/gabrielpatricksouza/carousel_grid
 
 environment:
@@ -11,6 +11,7 @@ dependencies:
   cached_network_image: ">= 3.1.0+1 <4.0.0"
   photo_view: ">= 0.13.0 <1.0.0"
   infinite_carousel: ">= 1.0.1 <2.0.0"
+  image_network: ">= 2.1.0 <3.0.0"
 
   flutter:
     sdk: flutter

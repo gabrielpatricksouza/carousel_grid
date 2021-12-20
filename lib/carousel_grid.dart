@@ -103,6 +103,8 @@ class _CarouselGridState extends State<CarouselGrid> {
                                   onTap: () {
                                     openImageFullScreen(index);
                                   },
+                                  height: widget.height,
+                                  width: widget.width,
                                 ));
                     })));
   }
@@ -119,6 +121,8 @@ class _CarouselGridState extends State<CarouselGrid> {
         children: <Widget>[
           GalleryItemThumbnail(
             galleryItem: galleryItems[index],
+            height: widget.height,
+            width: widget.width,
           ),
           Container(
             color: Colors.black.withOpacity(.7),

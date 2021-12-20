@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:image_network/image_network.dart';
 import 'package:infinite_carousel/infinite_carousel.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
-
 import './gallery_model.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
@@ -59,6 +59,28 @@ class _GalleryImageViewWrapperState extends State<GalleryImageViewWrapper> {
   void dispose() {
     super.dispose();
     _controller.dispose();
+  }
+
+  clickImage(int itemIndex) {
+    Navigator.pushReplacement(
+      context,
+      PageRouteBuilder(
+        transitionDuration: Duration.zero,
+        pageBuilder: (_, __, ___) => GalleryImageViewWrapper(
+          titleGallery: widget.titleGallery,
+          galleryItems: widget.galleryItems,
+          backgroundDecoration: const BoxDecoration(
+            color: Colors.black,
+          ),
+          initialIndex: itemIndex,
+          scrollDirection: Axis.horizontal,
+          iconBack: widget.iconBack,
+          fit: widget.fit,
+          loop: widget.loop,
+          activeCarouselList: widget.activeCarouselList,
+        ),
+      ),
+    );
   }
 
   @override
@@ -132,34 +154,23 @@ class _GalleryImageViewWrapperState extends State<GalleryImageViewWrapper> {
                       padding: const EdgeInsets.symmetric(horizontal: 4.0),
                       child: GestureDetector(
                           onTap: () {
-                            Navigator.pushReplacement(
-                              context,
-                              PageRouteBuilder(
-                                transitionDuration: Duration.zero,
-                                pageBuilder: (_, __, ___) =>
-                                    GalleryImageViewWrapper(
-                                  titleGallery: widget.titleGallery,
-                                  galleryItems: widget.galleryItems,
-                                  backgroundDecoration: const BoxDecoration(
-                                    color: Colors.black,
-                                  ),
-                                  initialIndex: itemIndex,
-                                  scrollDirection: Axis.horizontal,
-                                  iconBack: widget.iconBack,
-                                  fit: widget.fit,
-                                  loop: widget.loop,
-                                  activeCarouselList: widget.activeCarouselList,
-                                ),
-                              ),
-                            );
+                            clickImage(itemIndex);
                           },
                           child: widget.activeCarouselList
                               ? ClipRRect(
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(5)),
                                   child: kIsWeb
-                                      ? Image.network(widget
-                                          .galleryItems[itemIndex].imageUrl)
+                                      ? ImageNetwork(
+                                          image: widget
+                                              .galleryItems[itemIndex].imageUrl,
+                                          width: 200,
+                                          height: 200,
+                                          fitWeb: BoxFitWeb.contain,
+                                          onTap: () {
+                                            clickImage(itemIndex);
+                                          },
+                                        )
                                       : CachedNetworkImage(
                                           fit: widget.fit,
                                           imageUrl: widget
@@ -188,12 +199,21 @@ class _GalleryImageViewWrapperState extends State<GalleryImageViewWrapper> {
   PhotoViewGalleryPageOptions _buildImage(BuildContext context, int index) {
     final GalleryItemModel item = widget.galleryItems[index];
     return PhotoViewGalleryPageOptions.customChild(
-      child: CachedNetworkImage(
-        imageUrl: item.imageUrl,
-        placeholder: (context, url) =>
-            const Center(child: CircularProgressIndicator()),
-        errorWidget: (context, url, error) => const Icon(Icons.error),
-      ),
+      child: kIsWeb
+          ? Center(
+              child: ImageNetwork(
+                image: item.imageUrl,
+                fitWeb: BoxFitWeb.contain,
+                width: 800,
+                height: 800,
+              ),
+            )
+          : CachedNetworkImage(
+              imageUrl: item.imageUrl,
+              placeholder: (context, url) =>
+                  const Center(child: CircularProgressIndicator()),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+            ),
       initialScale: PhotoViewComputedScale.contained,
       minScale: minScale,
       maxScale: maxScale,
