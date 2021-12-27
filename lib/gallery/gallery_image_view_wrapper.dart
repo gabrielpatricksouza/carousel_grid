@@ -165,8 +165,9 @@ class _GalleryImageViewWrapperState extends State<GalleryImageViewWrapper> {
                                           image: widget
                                               .galleryItems[itemIndex].imageUrl,
                                           width: 200,
-                                          height: 200,
-                                          fitWeb: BoxFitWeb.contain,
+                                          height: 100,
+                                          duration: 500,
+                                          fitWeb: BoxFitWeb.cover,
                                           onTap: () {
                                             clickImage(itemIndex);
                                           },
@@ -204,6 +205,7 @@ class _GalleryImageViewWrapperState extends State<GalleryImageViewWrapper> {
               child: ImageNetwork(
                 image: item.imageUrl,
                 fitWeb: BoxFitWeb.contain,
+                duration: 500,
                 width: 800,
                 height: 800,
               ),

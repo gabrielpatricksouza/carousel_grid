@@ -1,5 +1,9 @@
 ## 1.0.3
 
+* Updated dependencies
+
+## 1.0.3
+
 * Updated web version
 
 ## 1.0.2

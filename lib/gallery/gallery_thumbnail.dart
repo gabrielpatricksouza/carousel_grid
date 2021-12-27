@@ -31,6 +31,7 @@ class GalleryItemThumbnail extends StatelessWidget {
                 image: galleryItem.imageUrl,
                 width: width / 2,
                 height: height,
+                duration: 500,
               )
             : CachedNetworkImage(
                 fit: BoxFit.cover,
