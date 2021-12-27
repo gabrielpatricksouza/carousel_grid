@@ -12,7 +12,7 @@ Carousel Grid is a Flutter package to display thumbnail grid images with cache a
 </p>
 
 <p align="center">
-  <img src="https://github.com/gabrielpatricksouza/carousel_grid/blob/master/example/demo/example_web.gif?raw=true" hspace="15"/>
+  <img src="https://github.com/gabrielpatricksouza/carousel_grid/blob/master/example/demo/example_web.gif?raw=true"  width=56% hspace="15"/>
   <img src="https://github.com/gabrielpatricksouza/carousel_grid/blob/master/example/demo/example.gif?raw=true" width=24% hspace="15"/>
 </p>
 
